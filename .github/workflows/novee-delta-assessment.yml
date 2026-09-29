@@ -1,0 +1,27 @@
+name: Novee delta assessment
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  delta:
+    runs-on: ubuntu-latest
+    env:
+      NOVEE_SERVICE_KEY: ${{ secrets.NOVEE_SERVICE_KEY }}
+      NOVEE_ASSET_ID: ${{ vars.NOVEE_ASSET_ID }}
+    steps:
+      - name: Delta-assess the merged diff
+        run: |
+          docker run --rm \
+            -e NOVEE_SERVICE_KEY \
+            public.ecr.aws/novee/novee-cli:latest \
+            assessment delta \
+              --asset "$NOVEE_ASSET_ID" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" \
+              --json
