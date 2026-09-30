@@ -4,8 +4,6 @@ if( isset( $_POST[ 'Submit' ] ) ) {
 	// Get input
 	$id = $_POST[ 'id' ];
 
-	$id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $id);
-
 	switch ($_DVWA['SQLI_DB']) {
 		case MYSQL:
 			$query  = "SELECT first_name, last_name FROM users WHERE user_id = $id;";
