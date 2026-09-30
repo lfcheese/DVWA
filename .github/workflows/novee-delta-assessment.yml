@@ -3,7 +3,7 @@ name: Novee delta assessment
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: read
