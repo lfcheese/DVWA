@@ -3,7 +3,7 @@
 if( isset( $_POST[ 'Submit' ] ) ) {
 	// Get input
 	$id = $_POST[ 'id' ];
-
+# 
 	switch ($_DVWA['SQLI_DB']) {
 		case MYSQL:
 			$query  = "SELECT first_name, last_name FROM users WHERE user_id = $id;";
