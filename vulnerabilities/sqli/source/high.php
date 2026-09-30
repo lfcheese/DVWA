@@ -2,7 +2,7 @@
 
 if( isset( $_SESSION [ 'id' ] ) ) {
 	// Get input
-	$id = $_SESSION[ 'id' ];
+	# $id = $_SESSION[ 'id' ];
 
 	switch ($_DVWA['SQLI_DB']) {
 		case MYSQL:
