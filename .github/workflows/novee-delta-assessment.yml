@@ -21,7 +21,8 @@ jobs:
             -e NOVEE_SERVICE_KEY \
             public.ecr.aws/novee/novee-cli:latest \
             assessment delta \
-              --asset "$NOVEE_ASSET_ID" \
-              --repo "$GITHUB_REPOSITORY" \
-              --target "$GITHUB_SHA" \
-              --json
+            auth status
+      #        --asset "$NOVEE_ASSET_ID" \
+      #        --repo "$GITHUB_REPOSITORY" \
+      #        --target "$GITHUB_SHA" \
+      #        --json
