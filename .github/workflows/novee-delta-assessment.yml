@@ -2,24 +2,30 @@ name: Novee delta assessment
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+    paths-ignore:
+      - '.github/**'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   delta:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, lab-docker]
     env:
       NOVEE_SERVICE_KEY: ${{ secrets.NOVEE_SERVICE_KEY }}
       NOVEE_ASSET_ID: ${{ vars.NOVEE_ASSET_ID }}
       NOVEE_API_URL: https://api.app.novee.security
     steps:
-      - name: Delta-assess the merged diff
+      - name: Check Novee credentials
         run: |
-          docker run --rm \
-            -e NOVEE_SERVICE_KEY \
+          docker run --rm -e NOVEE_SERVICE_KEY -e NOVEE_API_URL \
+            public.ecr.aws/novee/novee-cli:latest auth status
+
+      - name: Delta-assess the pushed commit
+        run: |
+          docker run --rm -e NOVEE_SERVICE_KEY -e NOVEE_API_URL \
             public.ecr.aws/novee/novee-cli:latest \
             assessment delta \
               --asset "$NOVEE_ASSET_ID" \
