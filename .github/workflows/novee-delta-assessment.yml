@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   delta:
-    runs-on: [self-hosted, lab-docker]
+    runs-on: [self-hosted]
     env:
       NOVEE_SERVICE_KEY: ${{ secrets.NOVEE_SERVICE_KEY }}
       NOVEE_ASSET_ID: ${{ vars.NOVEE_ASSET_ID }}
