@@ -14,6 +14,7 @@ jobs:
     env:
       NOVEE_SERVICE_KEY: ${{ secrets.NOVEE_SERVICE_KEY }}
       NOVEE_ASSET_ID: ${{ vars.NOVEE_ASSET_ID }}
+      NOVEE_API_URL: https://api.app.novee.security
     steps:
       - name: Delta-assess the merged diff
         run: |
